@@ -15,20 +15,22 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
   import HeaderTop from '../../components/HeaderTop/HeaderTop'
 
   export default {
     name: 'MSite',
-    data() {
+    data () {
       return {
-        baseImageUrl: 'https://fuss10.elemecdn.com',
-        address: {
-          name: '北京市昌平区337省道'
-        }
+        baseImageUrl: 'https://fuss10.elemecdn.com'
       }
     },
+    mounted () {
+      this.$store.dispatch('getAddress')
+      console.log('address:', this.address)
+    },
     computed: {
-
+      ...mapState(['address', 'categories', 'userInfo'])
     },
     components: {
       HeaderTop
